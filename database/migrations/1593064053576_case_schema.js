@@ -11,6 +11,7 @@ class CaseSchema extends Schema {
       table.text('details')
       table.integer('officer_id').references('officers')
       table.integer('bike_id').references('bikes')
+      table.integer('departament_id').references('departaments')
       table.timestamp('theft_date').defaultTo(this.fn.now())
       table.timestamp('created_at').defaultTo(this.fn.now())
       table.timestamp('updated_at').defaultTo(this.fn.now())
