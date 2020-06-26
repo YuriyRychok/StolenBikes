@@ -7,7 +7,7 @@ class OwnerSchema extends Schema {
   up () {
     this.create('owners', (table) => {
       table.increments('id')
-      table.string('username', 80).notNullable()
+      table.string('name', 120).notNullable()
       table.string('phone_number', 80).notNullable()
       table.timestamp('created_at').defaultTo(this.fn.now())
     })

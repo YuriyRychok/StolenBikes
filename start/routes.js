@@ -23,7 +23,7 @@ Route.get('/', () => {
 Route.group(() => {
   /**Cases routes */
   // GET
-  Route.get('cases', "CaseController.getAll")
+  Route.get('cases', "CaseController.index")
   Route.get('cases/active', "CaseController.getActive")
   Route.get('cases/closed', "CaseController.getClosed")
   Route.get('cases/open', "CaseController.getOpen")
@@ -42,7 +42,7 @@ Route.group(() => {
 
   /**Officer routes */
   // GET
-  Route.get('officers', "OfficerController.getAll")
+  Route.get('officers', "OfficerController.index")
   Route.get('officers/active', "OfficerController.getActive")
   Route.get('officers/free', "OfficerController.getFree")
   Route.get('officers/:id/free', "OfficerController.isFree")
