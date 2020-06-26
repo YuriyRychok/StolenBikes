@@ -9,9 +9,9 @@ const { validate } = use('Validator')
 
 const rules = {
   status: 'required|in:open,in_progress,resolved',
-  officer_id: 'required|integer',
-  bike_id: 'required|integer',
-  departament_id: 'required|integer',
+  officer_id: 'required|integer|exists:officers,id|oneCaseOfficer',
+  bike_id: 'required|integer|exists:bikes,id|oneCaseBike',
+  departament_id: 'required|integer|exists:departaments,id',
   created_at: 'date_format:YYYY-MM-DD HH:mm:ss',
   updated_at: 'date_format:YYYY-MM-DD HH:mm:ss',
   theft_date: 'date_format:YYYY-MM-DD HH:mm:ss',
@@ -19,9 +19,9 @@ const rules = {
 
 const rules_update = {
   status: 'in:open,in_progress,resolved',
-  officer_id: 'integer',
-  bike_id: 'integer',
-  departament_id: 'integer',
+  officer_id: 'integer|exists:officers,id|oneCaseOfficer',
+  bike_id: 'integer|exists:bikes,id|oneCaseBike',
+  departament_id: 'integer|exists:departaments,id',
   theft_date: 'date_format:YYYY-MM-DD HH:mm:ss',
 }
 

@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Bike extends Model {
+    static get updatedAtColumn () {
+        return null;
+    }
 }
 
 module.exports = Bike

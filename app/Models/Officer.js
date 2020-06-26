@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Officer extends Model {
+    static get updatedAtColumn () {
+        return null;
+    }
 }
 
 module.exports = Officer

@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class Departament extends Model {
+    static get updatedAtColumn () {
+        return null;
+    }
 }
 
 module.exports = Departament
