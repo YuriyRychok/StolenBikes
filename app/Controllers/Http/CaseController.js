@@ -30,8 +30,13 @@ const rules_update = {
  */
 class CaseController {
   /**
-   * Show a list of all cases.
-   * GET cases
+   * @api {get} /api/v1/cases Request a list of all cases information
+   * @apiName StolenBikes
+   * @apiGroup Case
+   * @apiVersion 0.0.1
+   *
+   * @apiSuccess {Object[]} Case List of all cases
+   * @apiError (500) {String} ServerError Something went wrong in the server...
    */
   async index () {
     try {
@@ -48,8 +53,13 @@ class CaseController {
   }
 
   /**
-   * Show a list of active cases.
-   * GET cases/active
+   * @api {get} /api/v1/cases/active Request a list of all active cases
+   * @apiName StolenBikes
+   * @apiGroup Case
+   * @apiVersion 0.0.1
+   *
+   * @apiSuccess {Object[]} Case List of all active cases
+   * @apiError (500) {String} ServerError Something went wrong in the server...
    */
   async getActive () {
     try {
@@ -69,8 +79,13 @@ class CaseController {
   }
 
   /**
-   * Show a list of closed cases.
-   * GET cases/closed
+   * @api {get} /api/v1/cases/closed Request a list of all closed cases
+   * @apiName StolenBikes
+   * @apiGroup Case
+   * @apiVersion 0.0.1
+   *
+   * @apiSuccess {Object[]} Case List of all closed cases
+   * @apiError (500) {String} ServerError Something went wrong in the server...
    */
   async getClosed () {
     try {
@@ -90,8 +105,13 @@ class CaseController {
   }
 
   /**
-   * Show a list of closed cases.
-   * GET cases/open
+   * @api {get} /api/v1/cases/closed Request a list of all open cases
+   * @apiName StolenBikes
+   * @apiGroup Case
+   * @apiVersion 0.0.1
+   *
+   * @apiSuccess {Object[]} Case List of all open cases
+   * @apiError (500) {String} ServerError Something went wrong in the server...
    */
   async getOpen () {
     try {
@@ -118,6 +138,23 @@ class CaseController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
+
+  /**
+   * @api {post} /api/v1/cases Create a new case
+   * @apiName StolenBikes
+   * @apiGroup Case
+   * @apiVersion 0.0.1
+   * 
+   * @apiParam {Text} details Details of case
+   * @apiParam {string="open","in_progress","resolved"} status Case status
+   * @apiParam {Number} officer_id Officer ID
+   * @apiParam {Number} bike_id Bike ID
+   * @apiParam {Number} departament_id Departament ID
+   * @apiParam {Date} [theft_date=now] theft_date Theft date
+   *
+   * @apiSuccess {String} SuccessMessage Success!
+   * @apiError (500) {String} ServerError Something went wrong in the server...
+   */
   async create ({ request, response }) {
     
     try {
@@ -137,6 +174,10 @@ class CaseController {
       new_case.officer_id = body['officer_id']
       new_case.bike_id = body['bike_id']
       new_case.departament_id = body['departament_id']
+
+      if (body['theft_date']) {
+        new_case.theft_date = body['theft_date'];
+      }
   
       await new_case.save()
       return response
@@ -157,6 +198,16 @@ class CaseController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
+
+   /**
+   * @api {get} /api/v1/cases/:id Get case by id
+   * @apiName StolenBikes
+   * @apiGroup Case
+   * @apiVersion 0.0.1
+   * 
+   * @apiSuccess {Object} Case
+   * @apiError (500) {String} ServerError Something went wrong in the server...
+   */
   async getCaseById ({ params, request, response}) {
     try {
       const { id } = params
@@ -175,6 +226,23 @@ class CaseController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
+   */
+
+   /**
+   * @api {put} /api/v1/cases/:id Edit a case
+   * @apiName StolenBikes
+   * @apiGroup Case
+   * @apiVersion 0.0.1
+   * 
+   * @apiParam {Text} details Details of case
+   * @apiParam {string="open","in_progress","resolved"} status Case status
+   * @apiParam {Number} officer_id Officer ID
+   * @apiParam {Number} bike_id Bike ID
+   * @apiParam {Number} departament_id Departament ID
+   * @apiParam {Date} theft_date Theft date
+   *
+   * @apiSuccess {String} SuccessMessage Success!
+   * @apiError (500) {String} ServerError Something went wrong in the server...
    */
   async edit ({ params, request, response }) {
     try {
@@ -227,6 +295,16 @@ class CaseController {
    * @param {object} ctx
    * @param {Request} ctx.request
    * @param {Response} ctx.response
+   */
+
+   /**
+   * @api {delete} /api/v1/cases/:id Delete case by id
+   * @apiName StolenBikes
+   * @apiGroup Case
+   * @apiVersion 0.0.1
+   * 
+   * @apiSuccess {String} SuccessMessage Success!
+   * @apiError (500) {String} ServerError Something went wrong in the server...
    */
   async delete ({ params, request, response }) {
     try {

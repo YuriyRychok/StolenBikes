@@ -1,0 +1,7 @@
+{
+    "name": "StolenBikes",
+    "version": "0.0.1",
+    "description": "Stolen bikes API",
+    "title": "Stolen bikes API",
+    "url" : "http://127.0.0.1:3333"
+}
